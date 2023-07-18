@@ -29,7 +29,7 @@ public class Usuario implements Serializable{
     private String cpf;
 
     @Column(name = "data_nascimento")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "GMT-4")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", timezone = "GMT-4")
     private Date dataNascimento;
 
     @Column(name = "sexo", length = 1)

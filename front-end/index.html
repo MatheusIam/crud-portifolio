@@ -1,55 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script type="module" src="js/fotosFirebase.js"></script>
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/fotos.css">
-    <link rel="stylesheet" href="css/tabela.css">
-    <link rel="stylesheet" href="css/miscelanea.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teste</title>
+  <script type="module" src="js/fotosFirebase.js"></script>
+  <script src="js/tabela.js"></script>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/fotos.css">
+  <link rel="stylesheet" href="css/tabela.css">
+  <link rel="stylesheet" href="css/miscelanea.css">
 </head>
 
 <body>
 
-    <div class="container-md">
+  <div class="container-md">
 
-      <button>Novo</button>
+    <button id="btn-novo">Novo</button>
 
-    </div>
-    <div class="container-md">
-        
-        
-        <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">N.</th>
-                <th scope="col">Nome</th>
-                <th scope="col">CPF</th>
-                <th scope="col">Data de Nascimento</th>
-                <th scope="col">Sexo</th>
-                <th scope="col">Foto</th>
-                <th scope="col">Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Matheus</td>
-                <td>123.123.123-12</td>
-                <td>16/07/2023</td>
-                <td>M</td>
-                <td id="fotosTabela"><img src="" alt="" class="foto" id="gato"></td>
-                <td><button class="btn-alterar" id="1"><img class="alterar-img" src="img/pencil.png"></button><button class="btn-excluir" id="1"><img class="excluir-img" src="img/remove.png"></button></td>
-              </tr>
-            </tbody>
-          </table>
+  </div>
+  <div class="container-md">
 
-    </div>
 
-    
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">N.</th>
+          <th scope="col">Nome</th>
+          <th scope="col">CPF</th>
+          <th scope="col">Data de Nascimento</th>
+          <th scope="col">Sexo</th>
+          <th scope="col">Foto</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+    <script>
+      document.querySelector('#btn-novo').addEventListener('click', function () {
+        location.assign('novo.html');
+      });
+
+      document.addEventListener('click', function (event) {
+        if (event.target.matches('.btn-excluir')) {
+          const id = event.target.id;
+          fetch(`http://localhost:8080/usuarios/${id}`, {
+            method: 'DELETE'
+          });
+          location.reload();
+        }
+      });
+
+      document.addEventListener('click', function (event) {
+        if (event.target.matches('.btn-alterar')) {
+          const id = event.target.id;
+          window.location.href = `alterar.html?id=${id}`;
+        }
+      });
+    </script>
+  </div>
 </body>
 
 </html>
